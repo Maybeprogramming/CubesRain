@@ -21,4 +21,10 @@ public class TestCoroutine : MonoBehaviour
             yield return wait;
         }
     }
+
+    [ContextMenu(nameof(Print))]
+    private void Print()
+    {
+        Debug.Log("Log");
+    }
 }
