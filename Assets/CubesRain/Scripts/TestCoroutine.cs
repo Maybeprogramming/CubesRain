@@ -25,6 +25,7 @@ public class TestCoroutine : MonoBehaviour
     [ContextMenu(nameof(Print))]
     private void Print()
     {
+        GameObject gameObject = FindObjectOfType<GameObject>();
         Debug.Log("Log");
     }
 }
