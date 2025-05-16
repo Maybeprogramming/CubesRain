@@ -1,18 +1,16 @@
-using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class Colorer : MonoBehaviour
 {
-    [SerializeField] private Renderer _renderer;
-    [SerializeField] private float _fadeTime;
-    [SerializeField] private float _red;
-    [SerializeField] private float _green;
-    [SerializeField] private float _blue;
-    [SerializeField] private float _alpha;
+    private Renderer _renderer;
+    private Color _defaultColor;
 
-    public void Fade()
+    private void Awake()
     {
-        StartCoroutine(OnFading(_fadeTime));
+        _renderer = GetComponent<Renderer>();
+        _defaultColor = Color.white;
+        _renderer.material.color = _defaultColor;
     }
 
     public void SetRandomColor()
@@ -20,28 +18,38 @@ public class Colorer : MonoBehaviour
         _renderer.material.color = GetRandomColor();
     }
 
+    public void SetDefaultColor()
+    {
+        _renderer.material.color = _defaultColor;
+    }
+
     private Color GetRandomColor(float alpha = 1f)
     {
-        _red = Random.value;
-        _green = Random.value;
-        _blue = Random.value;
-        _alpha = alpha;
+        float _red = Random.value;
+        float _green = Random.value;
+        float _blue = Random.value;
+        float _alpha = alpha;
 
         return new Color(_red, _green, _blue, _alpha);
     }
 
-    private IEnumerator OnFading(float fadeTime, float transporent = 0f)
-    {
-        float elapsedTime = 0f;
-        Color color = _renderer.material.color;
-        float alpha = color.a;
+    //public void Fade()
+    //{
+    //    StartCoroutine(OnFading(_fadeTime));
+    //}
 
-        while (elapsedTime < fadeTime)
-        {
-            color.a = Mathf.Lerp(alpha, transporent, elapsedTime/ fadeTime);
-            _renderer.material.color = color;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
+    //private IEnumerator OnFading(float fadeTime, float transporent = 0f)
+    //{
+    //    float elapsedTime = 0f;
+    //    Color color = _renderer.material.color;
+    //    float alpha = color.a;
+
+    //    while (elapsedTime < fadeTime)
+    //    {
+    //        color.a = Mathf.Lerp(alpha, transporent, elapsedTime/ fadeTime);
+    //        _renderer.material.color = color;
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //}
 }
