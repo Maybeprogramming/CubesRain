@@ -49,7 +49,7 @@ public class Spawner<T> : MonoBehaviour where T : Spawnable
     {
         while (isWork)
         {
-            _pool.Get();
+            Spawnable spawnableObjecxt = _pool.Get();
             yield return _waitTime = new WaitForSeconds(_timeBeetwenSpawn);
         }
     }
