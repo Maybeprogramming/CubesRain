@@ -1,16 +1,13 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(MeshRenderer))]
 public class Colorer : MonoBehaviour
 {
-    private Renderer _renderer;
-    private Color _defaultColor;
+    private MeshRenderer _renderer;
 
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
-        _defaultColor = Color.white;
-        _renderer.material.color = _defaultColor;
+        _renderer = GetComponent<MeshRenderer>();
     }
 
     public void SetRandomColor()
@@ -18,9 +15,9 @@ public class Colorer : MonoBehaviour
         _renderer.material.color = GetRandomColor();
     }
 
-    public void SetDefaultColor()
+    public void SetColor(Color color)
     {
-        _renderer.material.color = _defaultColor;
+        _renderer.material.color = color;
     }
 
     private Color GetRandomColor(float alpha = 1f)
@@ -33,23 +30,8 @@ public class Colorer : MonoBehaviour
         return new Color(_red, _green, _blue, _alpha);
     }
 
-    //public void Fade()
-    //{
-    //    StartCoroutine(OnFading(_fadeTime));
-    //}
-
-    //private IEnumerator OnFading(float fadeTime, float transporent = 0f)
-    //{
-    //    float elapsedTime = 0f;
-    //    Color color = _renderer.material.color;
-    //    float alpha = color.a;
-
-    //    while (elapsedTime < fadeTime)
-    //    {
-    //        color.a = Mathf.Lerp(alpha, transporent, elapsedTime/ fadeTime);
-    //        _renderer.material.color = color;
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
+    public Material GetMaterial() 
+    { 
+        return _renderer.material;
+    }
 }

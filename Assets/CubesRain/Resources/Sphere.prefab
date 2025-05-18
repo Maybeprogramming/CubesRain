@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 114443428618024530}
   - component: {fileID: 8004716667801213024}
   - component: {fileID: 3638554673779284745}
-  - component: {fileID: 8503469439800492382}
-  m_Layer: 0
+  - component: {fileID: 347950866754570714}
+  - component: {fileID: 3794305315861223496}
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7677c14f36203b54d8ba054fc46860bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,14 +123,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deb069c5d013f149a7239825b36498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 0}
-  _defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  _fadeTime: 0
-  _red: 0
-  _green: 0
-  _blue: 0
-  _alpha: 0
---- !u!114 &8503469439800492382
+--- !u!54 &347950866754570714
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455677490243607587}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3794305315861223496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +159,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1455677490243607587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8314b55f2af634dabf84b0e5c911b6, type: 3}
+  m_Script: {fileID: 11500000, guid: db00d3e6d259a7c43ba9d632e6df6298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _minLifeTime: 2
   _maxLifeTime: 5
-  _isCollisionDetect: 0
-  _colorer: {fileID: 0}
+  _explosionForce: 1000
+  _explosionRadius: 6
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128

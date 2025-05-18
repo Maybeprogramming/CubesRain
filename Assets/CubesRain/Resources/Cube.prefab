@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 803942757723951133}
   - component: {fileID: 5011361352786637180}
   - component: {fileID: 1403146892995801696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,13 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deb069c5d013f149a7239825b36498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 7189985091701880901}
-  _defaultColor: {r: 1, g: 0, b: 0, a: 0}
-  _fadeTime: 10
-  _red: 0
-  _green: 0
-  _blue: 0
-  _alpha: 0
 --- !u!114 &1403146892995801696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,4 +165,3 @@ MonoBehaviour:
   _minLifeTime: 2
   _maxLifeTime: 5
   _isCollisionDetect: 0
-  _colorer: {fileID: 0}
