@@ -2077,6 +2077,7 @@ GameObject:
   - component: {fileID: 1838870998}
   - component: {fileID: 1838871000}
   - component: {fileID: 1838870999}
+  - component: {fileID: 1838871001}
   m_Layer: 5
   m_Name: PanelCounters
   m_TagString: Untagged
@@ -2103,7 +2104,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: -950}
+  m_SizeDelta: {x: -19.999756, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1838870999
 MonoBehaviour:
@@ -2143,6 +2144,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838870997}
   m_CullTransparentMesh: 1
+--- !u!114 &1838871001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838870997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 15
 --- !u!1 &1840542586
 GameObject:
   m_ObjectHideFlags: 0
