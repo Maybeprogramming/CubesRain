@@ -9,7 +9,7 @@ public class CubeSpawner : Spawner<Cube>
 
     private WaitForSeconds _waitTime;
 
-    public event Action<Vector3> CubeDead;
+    public event Action<Vector3> CubeLifeTimeEnded;
 
     private void Start()
     {
@@ -19,15 +19,15 @@ public class CubeSpawner : Spawner<Cube>
 
     private void Init(Cube cube)
     {
+        cube.Dead += OnDead;
         cube.transform.position = GetRandomSpawnPosition();
         cube.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-        cube.Dead += OnDead;
     }
 
     private void OnDead(Cube cube)
     {
-        CubeDead?.Invoke(cube.transform.position);
         cube.Dead -= OnDead;
+        CubeLifeTimeEnded?.Invoke(cube.transform.position);
         Pool.Release(cube);
     }
 

@@ -26,13 +26,16 @@ public class Cube : Entity
         Init();    
 
     private void OnDisable() =>
-        ResetTransform();
+        Reset();
 
-    private void ResetTransform()
+    private void Reset()
     {
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
+
+        if(_coroutine != null)
+            StopCoroutine(_coroutine);
     }
 
     private void OnCollisionEnter(Collision collision)
