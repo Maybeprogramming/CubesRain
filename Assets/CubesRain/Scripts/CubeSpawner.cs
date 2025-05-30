@@ -26,7 +26,6 @@ public class CubeSpawner : Spawner<Cube>
 
     private void OnDead(Cube cube)
     {
-        Debug.Log(cube.transform.position);
         CubeDead?.Invoke(cube.transform.position);
         cube.Dead -= OnDead;
         Pool.Release(cube);
@@ -39,10 +38,8 @@ public class CubeSpawner : Spawner<Cube>
     {
         while (isWork)
         {
-            if (Pool.Get() is Cube cube)
-            {
-                Init(cube);
-            }
+            if (Pool.Get() is Cube cube)            
+                Init(cube);            
 
             yield return _waitTime;
         }

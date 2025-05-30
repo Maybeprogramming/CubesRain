@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Rigidbody), typeof(Colorer))]
 public class Bomb : Entity
 {
     [SerializeField] private float _explosionForce;

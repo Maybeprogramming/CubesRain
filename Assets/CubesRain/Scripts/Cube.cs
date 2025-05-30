@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(Colorer))]
 public class Cube : Entity
 {
     private bool _isCollisionDetect;
@@ -21,15 +22,11 @@ public class Cube : Entity
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
-    {
-        Init();
-    }
+    private void OnEnable() =>    
+        Init();    
 
-    private void OnDisable()
-    {
+    private void OnDisable() =>
         ResetTransform();
-    }
 
     private void ResetTransform()
     {

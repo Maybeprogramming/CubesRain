@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<T> : MonoBehaviour where T : Entity
+public class Spawner<T> : MonoBehaviour, Iinformer where T : Entity
 {
     [SerializeField] private T _prefab;
     [SerializeField] private Transform _EntitiesConteiner;
@@ -20,7 +20,14 @@ public class Spawner<T> : MonoBehaviour where T : Entity
     private void Awake()
     {
         SpawnedEntities = 0;
+        PoolInit();
+    }
 
+    private void Start() =>    
+        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);    
+
+    private void PoolInit()
+    {
         Pool = new ObjectPool<Entity>(() => Create(),
                                   (entity) => ActionOnGet(entity),
                                   (entity) => entity.gameObject.SetActive(false),
@@ -28,8 +35,6 @@ public class Spawner<T> : MonoBehaviour where T : Entity
                                    true,
                                    _poolDefaultCapacity,
                                    _poolMaxCapacity);
-
-        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
     }
 
     private T Create()
@@ -47,13 +52,6 @@ public class Spawner<T> : MonoBehaviour where T : Entity
         DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
     }
 
-    private void OnReleased(Entity entity)
-    {
-        Pool.Release(entity);
-    }
-
-    private void DoInforming(int spawenedEntities, int createdEntities, int activeEntities)
-    {
-        Informing?.Invoke(spawenedEntities, createdEntities, activeEntities);
-    }
+    private void DoInforming(int spawenedEntities, int createdEntities, int activeEntities) =>    
+        Informing?.Invoke(spawenedEntities, createdEntities, activeEntities);    
 }

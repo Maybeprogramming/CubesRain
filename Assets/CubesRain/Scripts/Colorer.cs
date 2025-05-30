@@ -5,33 +5,18 @@ public class Colorer : MonoBehaviour
 {
     private MeshRenderer _renderer;
 
-    private void Awake()
-    {
+    private void Awake() =>
         _renderer = GetComponent<MeshRenderer>();
-    }
 
-    public void SetRandomColor()
-    {
+    public void SetRandomColor() =>
         _renderer.material.color = GetRandomColor();
-    }
 
-    public void SetColor(Color color)
-    {
+    public void SetColor(Color color) =>
         _renderer.material.color = color;
-    }
 
-    private Color GetRandomColor(float alpha = 1f)
-    {
-        float _red = Random.value;
-        float _green = Random.value;
-        float _blue = Random.value;
-        float _alpha = alpha;
+    private Color GetRandomColor() =>
+        Random.ColorHSV();
 
-        return new Color(_red, _green, _blue, _alpha);
-    }
-
-    public Material GetMaterial() 
-    { 
-        return _renderer.material;
-    }
+    public Material GetMaterial() =>
+        _renderer.material;
 }

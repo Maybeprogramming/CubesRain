@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+public class CameraRotator : MonoBehaviour
 {
     private const string HorizontalAxis = "Horizontal";
 

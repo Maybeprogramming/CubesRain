@@ -239,9 +239,8 @@ GameObject:
   - component: {fileID: 344038673}
   - component: {fileID: 344038672}
   - component: {fileID: 344038674}
-  - component: {fileID: 344038675}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnerCubes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,25 +298,8 @@ MonoBehaviour:
   _EntitiesConteiner: {fileID: 1032233280}
   _poolDefaultCapacity: 10
   _poolMaxCapacity: 20
-  _timeBeetwenSpawn: 0.5
+  _timeBeetwenSpawn: 0.3
   isWork: 1
---- !u!114 &344038675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344038671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de13eafdaa730f4daea5b08a3d977b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 3794305315861223496, guid: e5ae2d4fee7e11a41b16b312ce71606c, type: 3}
-  _EntitiesConteiner: {fileID: 612702920}
-  _poolDefaultCapacity: 10
-  _poolMaxCapacity: 20
-  _cubeSpawner: {fileID: 344038674}
 --- !u!1 &534605540
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +954,77 @@ MonoBehaviour:
   _point: {fileID: 842012317}
   _axis: {x: 0, y: 1, z: 0}
   _angleSpeed: 60
+--- !u!1 &1029449493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029449496}
+  - component: {fileID: 1029449495}
+  - component: {fileID: 1029449494}
+  m_Layer: 0
+  m_Name: SpawnerBombes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1029449494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029449493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de13eafdaa730f4daea5b08a3d977b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3794305315861223496, guid: e5ae2d4fee7e11a41b16b312ce71606c, type: 3}
+  _EntitiesConteiner: {fileID: 612702920}
+  _poolDefaultCapacity: 10
+  _poolMaxCapacity: 20
+  _cubeSpawner: {fileID: 344038674}
+--- !u!65 &1029449495
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029449493}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1029449496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029449493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032233279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,6 +1586,7 @@ GameObject:
   - component: {fileID: 1424598497}
   - component: {fileID: 1424598496}
   - component: {fileID: 1424598499}
+  - component: {fileID: 1424598500}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1618,12 +1672,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8149029cb3887e443800b1ef1bb6c605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnedCube: {fileID: 882359967}
-  _createdCube: {fileID: 1840542588}
-  _activeCube: {fileID: 1151231432}
-  _spawnedBomb: {fileID: 1318771706}
-  _createdBomb: {fileID: 1653965483}
-  _activeBomb: {fileID: 1691621737}
+  _entitiesSpawner: {fileID: 0}
+  _spawnedEntities: {fileID: 882359967}
+  _createdEntities: {fileID: 1840542588}
+  _activeEntities: {fileID: 1151231432}
+--- !u!114 &1424598500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424598494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8149029cb3887e443800b1ef1bb6c605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entitiesSpawner: {fileID: 0}
+  _spawnedEntities: {fileID: 1318771706}
+  _createdEntities: {fileID: 1653965483}
+  _activeEntities: {fileID: 1691621737}
 --- !u!1 &1476394667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,5 +2362,6 @@ SceneRoots:
   - {fileID: 959060713}
   - {fileID: 185329949}
   - {fileID: 344038673}
+  - {fileID: 1029449496}
   - {fileID: 1032233280}
   - {fileID: 612702920}
