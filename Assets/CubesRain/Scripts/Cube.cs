@@ -2,13 +2,41 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Cube : SpawnableEntity
+public class Cube : Entity
 {
-    [SerializeField] private bool _isCollisionDetect;
-
+    private bool _isCollisionDetect;
+    private Colorer _colorer;
     private WaitForSeconds _waitTime;
+    private Rigidbody _rigidbody;
+    private Coroutine _coroutine;
 
-    public event Action<SpawnableEntity> Released;
+    public event Action<Cube> Dead;
+
+    [field: SerializeField] public float MinLifeTime { get; private set; }
+    [field: SerializeField] public float MaxLifeTime { get; private set; }
+
+    private void Awake()
+    {
+        _colorer = GetComponent<Colorer>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    private void OnDisable()
+    {
+        ResetTransform();
+    }
+
+    private void ResetTransform()
+    {
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,9 +44,9 @@ public class Cube : SpawnableEntity
 
         if (platform != null && _isCollisionDetect == false)
         {
-            Colorer.SetRandomColor();
+            _colorer.SetRandomColor();
             _isCollisionDetect = true;
-            StartCoroutine(LifeCountdown());
+            _coroutine = StartCoroutine(LifeCountdown());
         }
     }
 
@@ -26,10 +54,12 @@ public class Cube : SpawnableEntity
     {
         _waitTime = new WaitForSeconds(UnityEngine.Random.Range(MinLifeTime, MaxLifeTime));
         _isCollisionDetect = false;
+        _colorer.SetColor(Color.white);
     }
+
     private IEnumerator LifeCountdown()
     {
         yield return _waitTime;
-        Released?.Invoke(this);
+        Dead?.Invoke(this);
     }
 }

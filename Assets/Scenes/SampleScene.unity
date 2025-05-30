@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 344038673}
   - component: {fileID: 344038672}
   - component: {fileID: 344038674}
-  - component: {fileID: 344038676}
   - component: {fileID: 344038675}
   m_Layer: 0
   m_Name: SpawnPoint
@@ -291,15 +290,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344038671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41007e842cd01214a9fc63e28325344b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1403146892995801696, guid: 3b627ff4a152e3a4f9084068d1c60625, type: 3}
+  _prefab: {fileID: -8534200845775807853, guid: 3b627ff4a152e3a4f9084068d1c60625, type: 3}
+  _EntitiesConteiner: {fileID: 1032233280}
+  _poolDefaultCapacity: 10
+  _poolMaxCapacity: 20
   _timeBeetwenSpawn: 0.5
   isWork: 1
-  _conteiner: {fileID: 1032233280}
 --- !u!114 &344038675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,27 +310,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 344038671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d416b3f41868a04eaece88b7d0e93c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0de13eafdaa730f4daea5b08a3d977b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1455677490243607587, guid: e5ae2d4fee7e11a41b16b312ce71606c, type: 3}
-  _rateTime: 2
-  _position: {x: 0, y: 0, z: 0}
---- !u!114 &344038676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344038671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d416b3f41868a04eaece88b7d0e93c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 6365233309639248413, guid: 3b627ff4a152e3a4f9084068d1c60625, type: 3}
-  _rateTime: 0.5
-  _position: {x: 0, y: 0, z: 0}
+  _prefab: {fileID: 3794305315861223496, guid: e5ae2d4fee7e11a41b16b312ce71606c, type: 3}
+  _EntitiesConteiner: {fileID: 612702920}
+  _poolDefaultCapacity: 10
+  _poolMaxCapacity: 20
+  _cubeSpawner: {fileID: 344038674}
 --- !u!1 &534605540
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 612702919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1400995, y: 0.54999983, z: 5.1103296}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

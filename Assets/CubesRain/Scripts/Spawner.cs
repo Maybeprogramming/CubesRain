@@ -1,72 +1,59 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<T> : MonoBehaviour where T : SpawnableEntity
+public class Spawner<T> : MonoBehaviour where T : Entity
 {
     [SerializeField] private T _prefab;
-    [SerializeField] private float _timeBeetwenSpawn = 1f;
-    [SerializeField] private bool isWork = true;
-    [SerializeField] private Transform _conteiner;
+    [SerializeField] private Transform _EntitiesConteiner;
+    [SerializeField] private int _poolDefaultCapacity;
+    [SerializeField] private int _poolMaxCapacity;
 
-    private ObjectPool<SpawnableEntity> _pool;
-    private WaitForSeconds _waitTime;
+    private protected ObjectPool<Entity> Pool;
 
-    public int ActiveEntities => _pool.CountActive;
-    public int CreatedEntities => _pool.CountAll;
+    public event Action<int, int, int> Informing;
+
     public int SpawnedEntities { get; private set; }
+    public int CreatedEntities => Pool.CountAll;
+    public int ActiveEntities => Pool.CountActive;
 
     private void Awake()
     {
-        _waitTime = new WaitForSeconds(_timeBeetwenSpawn);
+        SpawnedEntities = 0;
 
-        _pool = new ObjectPool<SpawnableEntity>(() => Create(),
+        Pool = new ObjectPool<Entity>(() => Create(),
                                   (entity) => ActionOnGet(entity),
                                   (entity) => entity.gameObject.SetActive(false),
                                   (entity) => Destroy(entity),
                                    true,
-                                   10,
-                                   20);
-    }
+                                   _poolDefaultCapacity,
+                                   _poolMaxCapacity);
 
-    private void Start()
-    {
-        StartCoroutine(OnSpawning());
+        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
     }
 
     private T Create()
     {
         T instance = Instantiate(_prefab, Vector3.zero, Quaternion.identity);
-        instance.transform.parent = _conteiner.transform;
+        instance.transform.parent = _EntitiesConteiner.transform;
+        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
         return instance;
     }
 
-    private void ActionOnGet(SpawnableEntity entity)
+    private void ActionOnGet(Entity entity)
     {
-        entity.transform.position = GetRandomSpawnPosition();
-        entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-        //entity.Released += OnReleased;
         entity.gameObject.SetActive(true);
+        SpawnedEntities++;
+        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private void OnReleased(Entity entity)
     {
-        return new Vector3(UnityEngine.Random.Range(-5f, 5f), 20f, UnityEngine.Random.Range(-5f, 5f));
+        Pool.Release(entity);
     }
 
-    private void OnReleased(SpawnableEntity entity)
+    private void DoInforming(int spawenedEntities, int createdEntities, int activeEntities)
     {
-        //entity.Released -= OnReleased;
-        _pool.Release(entity);
-    }
-
-    private IEnumerator OnSpawning()
-    {
-        while (isWork)
-        {
-            SpawnableEntity entity = _pool.Get();
-            yield return _waitTime;
-        }
+        Informing?.Invoke(spawenedEntities, createdEntities, activeEntities);
     }
 }
