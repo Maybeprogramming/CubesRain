@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 882359968}
   - component: {fileID: 882359967}
   m_Layer: 5
-  m_Name: SpawnedCount
+  m_Name: SpawnedCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateObject: {fileID: 963194228}
-  _point: {fileID: 842012317}
+  _point: {fileID: 185329949}
   _axis: {x: 0, y: 1, z: 0}
   _angleSpeed: 60
 --- !u!1 &1029449493
@@ -1310,7 +1310,7 @@ GameObject:
   - component: {fileID: 1151231433}
   - component: {fileID: 1151231432}
   m_Layer: 5
-  m_Name: ActiveCount
+  m_Name: ActiveCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 1318771707}
   - component: {fileID: 1318771706}
   m_Layer: 5
-  m_Name: SpawnedCount
+  m_Name: SpawnedBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1585,8 +1585,10 @@ GameObject:
   - component: {fileID: 1424598498}
   - component: {fileID: 1424598497}
   - component: {fileID: 1424598496}
-  - component: {fileID: 1424598499}
+  - component: {fileID: 1424598502}
+  - component: {fileID: 1424598501}
   - component: {fileID: 1424598500}
+  - component: {fileID: 1424598499}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1672,7 +1674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8149029cb3887e443800b1ef1bb6c605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entitiesSpawner: {fileID: 0}
   _spawnedEntities: {fileID: 882359967}
   _createdEntities: {fileID: 1840542588}
   _activeEntities: {fileID: 1151231432}
@@ -1688,10 +1689,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8149029cb3887e443800b1ef1bb6c605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entitiesSpawner: {fileID: 0}
   _spawnedEntities: {fileID: 1318771706}
   _createdEntities: {fileID: 1653965483}
   _activeEntities: {fileID: 1691621737}
+--- !u!114 &1424598501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424598494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987612103a432814d87146170aa8205b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubeCounter: {fileID: 1424598499}
+  _cubeSpawner: {fileID: 344038674}
+--- !u!114 &1424598502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424598494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b7eff6867b80944bb0d82bbfe69f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bombCounter: {fileID: 1424598500}
+  _bombSpawner: {fileID: 1029449494}
 --- !u!1 &1476394667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,7 +1811,7 @@ GameObject:
   - component: {fileID: 1653965484}
   - component: {fileID: 1653965483}
   m_Layer: 5
-  m_Name: CreatedCount
+  m_Name: CreatedBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1996,7 +2024,7 @@ GameObject:
   - component: {fileID: 1691621738}
   - component: {fileID: 1691621737}
   m_Layer: 5
-  m_Name: ActiveCount
+  m_Name: ActiveBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2226,7 +2254,7 @@ GameObject:
   - component: {fileID: 1840542589}
   - component: {fileID: 1840542588}
   m_Layer: 5
-  m_Name: CreatedCount
+  m_Name: CreatedCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

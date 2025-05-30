@@ -1,18 +1,21 @@
 using TMPro;
 using UnityEngine;
 
-public class EntitiesCounter<T> : MonoBehaviour where T : Spawner<Entity>
+public class EntitiesCounter : MonoBehaviour
 {
-    [SerializeField] private T _spawner;
+    [SerializeField] private Iinformer _spawner;
     [SerializeField] private TextMeshProUGUI _spawnedEntities;
     [SerializeField] private TextMeshProUGUI _createdEntities;
     [SerializeField] private TextMeshProUGUI _activeEntities;
 
-    private void OnEnable() =>
-        _spawner.Informing += OnCounterRefreshing;
-
     private void OnDisable() =>
         _spawner.Informing -= OnCounterRefreshing;
+
+    public void Init(Iinformer spawner)
+    {
+        _spawner = spawner;
+        _spawner.Informing += OnCounterRefreshing;
+    }
 
     private void OnCounterRefreshing(int spawnedEntities, int createdEntities, int activeEntities)
     {
