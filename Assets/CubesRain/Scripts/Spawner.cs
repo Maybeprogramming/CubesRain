@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<T> : MonoBehaviour, Iinformer where T : Entity
+public class Spawner<T> : MonoBehaviour where T : Entity
 {
     [SerializeField] private T _prefab;
     [SerializeField] private Transform _EntitiesConteiner;

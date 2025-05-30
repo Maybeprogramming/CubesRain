@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class EntitiesCounter<T> : MonoBehaviour, where T : Spawner<Entity>
+public class EntitiesCounter<T> : MonoBehaviour where T : Spawner<Entity>
 {
     [SerializeField] private T _spawner;
     [SerializeField] private TextMeshProUGUI _spawnedEntities;
