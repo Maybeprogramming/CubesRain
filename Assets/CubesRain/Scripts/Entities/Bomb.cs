@@ -31,6 +31,11 @@ public class Bomb : Entity
         StartCoroutine(OnFading(_fadeTime));
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
     private void Explose()
     {
         Collider[] entities = Physics.OverlapSphere(transform.position, _explosionRadius, _layerMask);
