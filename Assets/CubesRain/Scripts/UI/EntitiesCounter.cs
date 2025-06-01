@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EntitiesCounter : MonoBehaviour
 {
-    [SerializeField] private Iinformer _spawner;
+    [SerializeField] private IInformer _spawner;
     [SerializeField] private TextMeshProUGUI _spawnedEntities;
     [SerializeField] private TextMeshProUGUI _createdEntities;
     [SerializeField] private TextMeshProUGUI _activeEntities;
@@ -11,7 +11,7 @@ public class EntitiesCounter : MonoBehaviour
     private void OnDisable() =>
         _spawner.Informing -= OnCounterRefreshing;
 
-    public void Init(Iinformer spawner)
+    public void Init(IInformer spawner)
     {
         _spawner = spawner;
         _spawner.Informing += OnCounterRefreshing;

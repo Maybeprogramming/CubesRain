@@ -14,9 +14,9 @@ public class Colorer : MonoBehaviour
     public void SetColor(Color color) =>
         _renderer.material.color = color;
 
-    private Color GetRandomColor() =>
-        Random.ColorHSV();
-
     public Material GetMaterial() =>
         _renderer.material;
+
+    private Color GetRandomColor() =>
+        Random.ColorHSV();
 }

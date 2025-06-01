@@ -5,7 +5,12 @@ using UnityEngine;
 public class CubeSpawner : Spawner<Cube>
 {
     [SerializeField] private float _timeBeetwenSpawn = 1f;
-    [SerializeField] private bool isWork = true;
+    [SerializeField] private bool _isWork = true;
+    [SerializeField] private float _minXAxis;
+    [SerializeField] private float _maxXAxis;
+    [SerializeField] private float _minZAxis;
+    [SerializeField] private float _maxZAxis;
+    [SerializeField] private float _height;
 
     private WaitForSeconds _waitTime;
 
@@ -14,14 +19,14 @@ public class CubeSpawner : Spawner<Cube>
     private void Start()
     {
         _waitTime = new WaitForSeconds(_timeBeetwenSpawn);
-        StartCoroutine(OnSpawning());
+        StartCoroutine(Spawning());
     }
 
     private void Init(Cube cube)
     {
+        cube.Reset();
         cube.Dead += OnDead;
         cube.transform.position = GetRandomSpawnPosition();
-        cube.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
     private void OnDead(Cube cube)
@@ -32,11 +37,11 @@ public class CubeSpawner : Spawner<Cube>
     }
 
     private Vector3 GetRandomSpawnPosition() =>    
-        new Vector3(UnityEngine.Random.Range(-5f, 5f), 20f, UnityEngine.Random.Range(-5f, 5f));
+        new Vector3(UnityEngine.Random.Range(_minXAxis, _maxXAxis), _height, UnityEngine.Random.Range(_minZAxis, _maxZAxis));
 
-    private IEnumerator OnSpawning()
+    private IEnumerator Spawning()
     {
-        while (isWork)
+        while (_isWork)
         {
             if (Pool.Get() is Cube cube)            
                 Init(cube);            

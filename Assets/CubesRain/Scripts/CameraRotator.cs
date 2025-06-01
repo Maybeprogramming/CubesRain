@@ -9,12 +9,12 @@ public class CameraRotator : MonoBehaviour
     [SerializeField] private Vector3 _axis;
     [SerializeField] private float _angleSpeed;
 
-    private float axisValueInput;
+    private float _axisValueInput;
 
     private void Update()
     {
-        axisValueInput = Input.GetAxis(HorizontalAxis);
-        Rotate(axisValueInput);
+        _axisValueInput = Input.GetAxis(HorizontalAxis);
+        Rotate(_axisValueInput);
     }
 
     private void Rotate(float axisValue) =>

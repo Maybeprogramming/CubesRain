@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<T> : MonoBehaviour, Iinformer where T : Entity
+public class Spawner<T> : MonoBehaviour, IInformer where T : Entity
 {
     [SerializeField] private T _prefab;
     [SerializeField] private Transform _EntitiesConteiner;
@@ -29,7 +29,7 @@ public class Spawner<T> : MonoBehaviour, Iinformer where T : Entity
     private void PoolInit()
     {
         Pool = new ObjectPool<Entity>(() => Create(),
-                                  (entity) => ActionOnGet(entity),
+                                  (entity) => GetEntity(entity),
                                   (entity) => entity.gameObject.SetActive(false),
                                   (entity) => Destroy(entity),
                                    true,
@@ -45,7 +45,7 @@ public class Spawner<T> : MonoBehaviour, Iinformer where T : Entity
         return instance;
     }
 
-    private void ActionOnGet(Entity entity)
+    private void GetEntity(Entity entity)
     {
         entity.gameObject.SetActive(true);
         SpawnedEntities++;

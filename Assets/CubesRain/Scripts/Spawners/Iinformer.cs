@@ -1,6 +1,6 @@
 ﻿using System;
 
-public interface Iinformer
+public interface IInformer
 {
     event Action<int, int, int> Informing;
 }
