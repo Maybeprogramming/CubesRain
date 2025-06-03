@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class CubeSpawner : Spawner<Cube>
 {
@@ -22,6 +23,17 @@ public class CubeSpawner : Spawner<Cube>
         StartCoroutine(Spawning());
     }
 
+    private protected override void PoolInit()
+    {
+        Pool = new ObjectPool<Cube>(() => Create(),
+                            (bomb) => GetEntity(bomb),
+                            (bomb) => bomb.gameObject.SetActive(false),
+                            (bomb) => Destroy(bomb),
+                            true,
+                            PoolDefaultCapacity,
+                            PoolMaxCapacity);
+    }
+
     private void Init(Cube cube)
     {
         cube.Reset();
@@ -36,16 +48,14 @@ public class CubeSpawner : Spawner<Cube>
         Pool.Release(cube);
     }
 
-    private Vector3 GetRandomSpawnPosition() =>    
+    private Vector3 GetRandomSpawnPosition() =>
         new Vector3(UnityEngine.Random.Range(_minXAxis, _maxXAxis), _height, UnityEngine.Random.Range(_minZAxis, _maxZAxis));
 
     private IEnumerator Spawning()
     {
         while (_isWork)
         {
-            if (Pool.Get() is Cube cube)            
-                Init(cube);            
-
+            Init(Pool.Get());
             yield return _waitTime;
         }
     }

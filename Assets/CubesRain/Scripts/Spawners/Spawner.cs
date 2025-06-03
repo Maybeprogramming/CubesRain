@@ -6,12 +6,13 @@ public class Spawner<T> : MonoBehaviour, IInformer where T : Entity
 {
     [SerializeField] private T _prefab;
     [SerializeField] private Transform _EntitiesConteiner;
-    [SerializeField] private int _poolDefaultCapacity;
-    [SerializeField] private int _poolMaxCapacity;
 
-    private protected ObjectPool<Entity> Pool;
+    private protected ObjectPool<T> Pool;
 
     public event Action<int, int, int> Informing;
+
+    [field: SerializeField] public int PoolDefaultCapacity { get; private set; }
+    [field: SerializeField] public int PoolMaxCapacity { get; private set; }
 
     public int SpawnedEntities { get; private set; }
     public int CreatedEntities => Pool.CountAll;
@@ -23,21 +24,12 @@ public class Spawner<T> : MonoBehaviour, IInformer where T : Entity
         PoolInit();
     }
 
-    private void Start() =>    
-        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);    
+    private void Start() =>
+        DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
 
-    private void PoolInit()
-    {
-        Pool = new ObjectPool<Entity>(() => Create(),
-                                  (entity) => GetEntity(entity),
-                                  (entity) => entity.gameObject.SetActive(false),
-                                  (entity) => Destroy(entity),
-                                   true,
-                                   _poolDefaultCapacity,
-                                   _poolMaxCapacity);
-    }
+    private protected virtual void PoolInit() { }
 
-    private T Create()
+    private protected T Create()
     {
         T instance = Instantiate(_prefab, Vector3.zero, Quaternion.identity);
         instance.transform.parent = _EntitiesConteiner.transform;
@@ -45,13 +37,13 @@ public class Spawner<T> : MonoBehaviour, IInformer where T : Entity
         return instance;
     }
 
-    private void GetEntity(Entity entity)
+    private protected void GetEntity(Entity entity)
     {
         entity.gameObject.SetActive(true);
         SpawnedEntities++;
         DoInforming(SpawnedEntities, CreatedEntities, ActiveEntities);
     }
 
-    private void DoInforming(int spawenedEntities, int createdEntities, int activeEntities) =>    
-        Informing?.Invoke(spawenedEntities, createdEntities, activeEntities);    
+    private void DoInforming(int spawenedEntities, int createdEntities, int activeEntities) =>
+        Informing?.Invoke(spawenedEntities, createdEntities, activeEntities);
 }
