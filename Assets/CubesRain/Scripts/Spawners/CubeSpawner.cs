@@ -26,7 +26,7 @@ public class CubeSpawner : Spawner<Cube>
     private protected override void PoolInit()
     {
         Pool = new ObjectPool<Cube>(() => Create(),
-                            (bomb) => GetEntity(bomb),
+                            (bomb) => PutEntity(bomb),
                             (bomb) => bomb.gameObject.SetActive(false),
                             (bomb) => Destroy(bomb),
                             true,

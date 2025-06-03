@@ -37,7 +37,7 @@ public class Spawner<T> : MonoBehaviour where T : Entity
         return instance;
     }
 
-    private protected void GetEntity(Entity entity)
+    private protected void PutEntity(Entity entity)
     {
         entity.gameObject.SetActive(true);
         SpawnedEntities++;

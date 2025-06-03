@@ -14,7 +14,7 @@ public class BombSpawner : Spawner<Bomb>
     private protected override void PoolInit()
     {
         Pool = new ObjectPool<Bomb>(() => Create(),
-                                    (bomb) => GetEntity(bomb),
+                                    (bomb) => PutEntity(bomb),
                                     (bomb) => bomb.gameObject.SetActive(false),
                                     (bomb) => Destroy(bomb),
                                     true,

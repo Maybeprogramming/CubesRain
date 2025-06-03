@@ -2,14 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(Colorer))]
+[RequireComponent(typeof(Rigidbody), typeof(Colorer), typeof(Explouser))]
 public class Bomb : Entity
 {
-    [SerializeField] private float _explosionForce;
-    [SerializeField] private float _explosionRadius;
-    [SerializeField] private LayerMask _layerMask;
-
     private Colorer _colorer;
+    private Explouser _explouser;
     private float _fadeTime;
     private Rigidbody _rigidbody;
     private Coroutine _coroutine;
@@ -23,6 +20,7 @@ public class Bomb : Entity
     {
         _colorer = GetComponent<Colorer>();
         _rigidbody = GetComponent<Rigidbody>();
+        _explouser = GetComponent<Explouser>();
     }
 
     private void OnEnable() =>
@@ -48,19 +46,6 @@ public class Bomb : Entity
         _coroutine = StartCoroutine(OnFading(_fadeTime));
     }
 
-    private void Explose()
-    {
-        Exploused?.Invoke(this);
-        Collider[] entities = Physics.OverlapSphere(transform.position, _explosionRadius, _layerMask);
-
-        foreach (Collider entity in entities)
-        {
-            if (entity.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))            
-                rigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, _layerMask);
-            
-        }
-    }
-
     private IEnumerator OnFading(float fadeTime)
     {
         float elapsedTime = 0f;
@@ -76,6 +61,7 @@ public class Bomb : Entity
             yield return null;
         }
 
-        Explose();
+        _explouser.Explose();
+        Exploused?.Invoke(this);
     }
 }

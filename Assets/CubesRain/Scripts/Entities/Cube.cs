@@ -37,6 +37,13 @@ public class Cube : Entity
             StopCoroutine(_coroutine);
     }
 
+    private void Init()
+    {
+        _waitTime = new WaitForSeconds(UnityEngine.Random.Range(MinLifeTime, MaxLifeTime));
+        _isCollisionDetect = false;
+        _colorer.SetColor(Color.white);
+    }
+
     private void ResetTransform() =>     
         transform.rotation = Quaternion.identity;    
 
@@ -58,12 +65,7 @@ public class Cube : Entity
         }
     }
 
-    public void Init()
-    {
-        _waitTime = new WaitForSeconds(UnityEngine.Random.Range(MinLifeTime, MaxLifeTime));
-        _isCollisionDetect = false;
-        _colorer.SetColor(Color.white);
-    }
+
 
     private IEnumerator LifeCountdown()
     {
